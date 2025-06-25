@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Configurations -->
+    <string name="configuration_title">Configurações</string>
+    <string name="configuration_theme_text">Tema</string>
+    <string name="configuration_security_text">Segurança</string>
+
+    <!-- Theme Configurations -->
+    <string name="configuration_theme_mode_title">Modo</string>
+    <string name="configuration_theme_dark_text">Escuro</string>
+    <string name="configuration_theme_light_text">Claro</string>
+    <string name="configuration_theme_auto_text">Automático</string>
+    <string name="configuration_theme_colors_title">Cores</string>
+    <string name="configuration_theme_dynamic_colors">Cores dinâmicas</string>
+
+    <!-- Security Configurations -->
+    <string name="configuration_security_biometric_label_text">Fazer login usando biometria</string>
+    <string name="configuration_security_biometric_not_available_text">\nEssa opção não está disponível</string>
+
+</resources>

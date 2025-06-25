@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ComposeTest" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="Theme.ComposeTest.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_splash_screen</item>
+        <item name="postSplashScreenTheme">@style/Theme.ComposeTest</item>
+    </style>
+</resources>

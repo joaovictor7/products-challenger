@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colors -->
+    <color name="background">@color/background_light</color>
+    <color name="background_light">#FFF8F6</color>
+    <color name="on_primary_container_dark">#F1C8B7</color>
+    <color name="background_dark">#161312</color>
+
+    <!-- Icons -->
+    <color name="ic_launcher_background">@color/background_dark</color>
+</resources>
