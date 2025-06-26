@@ -1,10 +1,10 @@
 plugins {
-    alias(libs.plugins.composeTest.library)
-    alias(libs.plugins.composeTest.compose)
+    alias(libs.plugins.productsChallenger.library)
+    alias(libs.plugins.productsChallenger.compose)
 }
 
 android {
-    namespace = "com.composetest.core.designsystem"
+    namespace = "com.productschallenge.core.designsystem"
 }
 
 dependencies {

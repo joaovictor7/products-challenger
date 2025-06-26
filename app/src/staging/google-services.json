@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1037458610034",
+    "project_id": "products-challenger",
+    "storage_bucket": "products-challenger.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037458610034:android:c98db618c75d2639672feb",
+        "android_client_info": {
+          "package_name": "com.productschallenge.develop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3dsmv2uC-OaK9IMsaKX0_ZmiGjSjQpz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037458610034:android:ee1b3107b15b7a68672feb",
+        "android_client_info": {
+          "package_name": "com.productschallenge.staging"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3dsmv2uC-OaK9IMsaKX0_ZmiGjSjQpz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

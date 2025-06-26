@@ -1,11 +1,11 @@
 plugins {
-    alias(libs.plugins.composeTest.application)
-    alias(libs.plugins.composeTest.compose)
-    alias(libs.plugins.composeTest.test)
+    alias(libs.plugins.productsChallenger.application)
+    alias(libs.plugins.productsChallenger.compose)
+    alias(libs.plugins.productsChallenger.test)
 }
 
 android {
-    val appPackage = "com.composetest"
+    val appPackage = "com.productschallenge"
     namespace = appPackage
     defaultConfig {
         applicationId = appPackage
@@ -21,14 +21,7 @@ dependencies {
     implementation(projects.core.data)
     implementation(projects.core.domain)
     implementation(projects.core.analytic)
-    implementation(projects.feature.login)
-    implementation(projects.feature.root)
-    implementation(projects.feature.home)
-    implementation(projects.feature.account)
-    implementation(projects.feature.configuration)
-    implementation(projects.feature.weatherforecast)
-    implementation(projects.feature.news)
-    implementation(projects.feature.exchange)
+    implementation(projects.feature.product)
     implementation(platform(libs.firebase.bom))
     implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.splash.screen)

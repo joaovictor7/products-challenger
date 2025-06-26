@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.composeTest.library)
+    alias(libs.plugins.productsChallenger.library)
 }
 
 android {
-    namespace = "com.composetest.common"
+    namespace = "com.productschallenge.common"
 }

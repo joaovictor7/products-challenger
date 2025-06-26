@@ -1,10 +1,10 @@
 plugins {
-    alias(libs.plugins.composeTest.library)
+    alias(libs.plugins.productsChallenger.library)
 
 }
 
 android {
-    namespace = "com.composetest.core.test"
+    namespace = "com.productschallenge.core.test"
 }
 
 dependencies {

@@ -112,11 +112,11 @@ coil-network = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", versio
 
 [plugins]
 # Convention plugins
-composeTest-application = { id = "com.composetest.application" }
-composeTest-library = { id = "com.composetest.library" }
-composeTest-compose = { id = "com.composetest.compose" }
-composeTest-test = { id = "com.composetest.test" }
-composeTest-kover = { id = "com.composetest.kover" }
+productsChallenger-application = { id = "com.productschallenge.application" }
+productsChallenger-library = { id = "com.productschallenge.library" }
+productsChallenger-compose = { id = "com.productschallenge.compose" }
+productsChallenger-test = { id = "com.productschallenge.test" }
+productsChallenger-kover = { id = "com.productschallenge.kover" }
 
 # Another plugins
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

@@ -1,9 +1,9 @@
 plugins {
-    alias(libs.plugins.composeTest.library)
+    alias(libs.plugins.productsChallenger.library)
 }
 
 android {
-    namespace = "com.composetest.core.security"
+    namespace = "com.productschallenge.core.security"
 }
 
 dependencies {

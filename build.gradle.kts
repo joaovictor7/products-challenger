@@ -1,10 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    alias(libs.plugins.composeTest.application) apply false
-    alias(libs.plugins.composeTest.library) apply false
-    alias(libs.plugins.composeTest.compose) apply false
-    alias(libs.plugins.composeTest.test) apply false
-    alias(libs.plugins.composeTest.kover) apply true
+    alias(libs.plugins.productsChallenger.application) apply false
+    alias(libs.plugins.productsChallenger.library) apply false
+    alias(libs.plugins.productsChallenger.compose) apply false
+    alias(libs.plugins.productsChallenger.test) apply false
+    alias(libs.plugins.productsChallenger.kover) apply true
     alias(libs.plugins.kotlinSerialization) apply false
     alias(libs.plugins.googleServices) apply false
     alias(libs.plugins.firebaseCrashlytics) apply false

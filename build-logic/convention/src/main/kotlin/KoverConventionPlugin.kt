@@ -43,9 +43,9 @@ internal class KoverConventionPlugin : Plugin<Project> {
                             androidGeneratedClasses()
                         }
                         includes {
-                            classes("com.composetest.*ViewModel")
-                            classes("com.composetest.*UseCase")
-                            classes("com.composetest.*Repository")
+                            classes("com.productschallenge.*ViewModel")
+                            classes("com.productschallenge.*UseCase")
+                            classes("com.productschallenge.*Repository")
                         }
                     }
                 }

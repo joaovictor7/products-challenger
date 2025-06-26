@@ -20,7 +20,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ComposeTest"
+rootProject.name = "ProductsChallenger"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":common")
@@ -34,11 +34,4 @@ include(":core:database")
 include(":core:security")
 include(":core:network")
 include(":core:analytic")
-include(":feature:login")
-include(":feature:root")
-include(":feature:home")
-include(":feature:configuration")
-include(":feature:account")
-include(":feature:weatherforecast")
-include(":feature:news")
-include(":feature:exchange")
+include(":feature:product")

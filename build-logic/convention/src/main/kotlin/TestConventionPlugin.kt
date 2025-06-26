@@ -12,7 +12,7 @@ internal class TestConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("com.composetest.kover")
+                apply("com.productschallenge.kover")
             }
             tasks.withType<Test> {
                 ignoreFailures = true

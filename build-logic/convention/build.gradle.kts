@@ -13,7 +13,7 @@ gradlePlugin {
     plugins {
         fun registerPlugin(id: String, className: String) {
             register(id) {
-                this.id = "com.composetest.$id"
+                this.id = "com.productschallenge.$id"
                 this.implementationClass = className
             }
         }
