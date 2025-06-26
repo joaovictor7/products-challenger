@@ -1,12 +1,12 @@
 package com.productschallenge.data.provider
 
 import android.os.Build
-import com.productschallenge.core.domain.provider.BuildConfigProvider
 import com.productschallenge.BuildConfig
 import com.productschallenge.core.domain.enums.BuildType.Companion.getBuildType
 import com.productschallenge.core.domain.enums.Flavor.Companion.getFlavor
 import com.productschallenge.core.domain.model.buildconfig.BuildConfigFieldsModel
 import com.productschallenge.core.domain.model.buildconfig.BuildConfigModel
+import com.productschallenge.core.domain.provider.BuildConfigProvider
 import javax.inject.Inject
 
 internal class BuildConfigProviderImpl @Inject constructor() : BuildConfigProvider {
@@ -21,9 +21,6 @@ internal class BuildConfigProviderImpl @Inject constructor() : BuildConfigProvid
     )
 
     override val buildConfigFields = BuildConfigFieldsModel(
-        coinApiHost = BuildConfig.COIN_API_HOST,
-        newsApiHost = BuildConfig.NEWS_API_HOST,
-        openWeatherApiHost = BuildConfig.OPEN_WEATHER_API_HOST,
-        openWeatherIconHost = BuildConfig.OPEN_WEATHER_ICON_HOST,
+        dummyJsonHost = BuildConfig.DUMMY_JSON_API_HOST,
     )
 }

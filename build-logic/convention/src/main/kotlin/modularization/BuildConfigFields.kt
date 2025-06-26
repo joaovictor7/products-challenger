@@ -18,16 +18,5 @@ internal fun ApplicationProductFlavor.setBuildConfigFields(
     flavor: Flavor
 ) {
     val properties = LoadPropertiesFile(project, flavor)
-    buildConfigField("String", "COIN_API_HOST", properties.getProperty("host.coin-api"))
-    buildConfigField("String", "NEWS_API_HOST", properties.getProperty("host.news-api"))
-    buildConfigField(
-        "String",
-        "OPEN_WEATHER_API_HOST",
-        properties.getProperty("host.open-weather-api")
-    )
-    buildConfigField(
-        "String",
-        "OPEN_WEATHER_ICON_HOST",
-        properties.getProperty("host.open-weather-icon")
-    )
+    buildConfigField("String", "DUMMY_JSON_API_HOST", properties.getProperty("host.dummy-json"))
 }

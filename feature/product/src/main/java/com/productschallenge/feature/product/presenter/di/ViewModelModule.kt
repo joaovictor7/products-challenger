@@ -3,7 +3,7 @@ package com.productschallenge.feature.product.presenter.di
 import com.productschallenge.core.analytic.sender.AnalyticSender
 import com.productschallenge.core.ui.di.qualifier.AsyncTaskUtilsQualifier
 import com.productschallenge.core.ui.util.AsyncTaskUtils
-import com.productschallenge.feature.product.analytic.screen.ProductScreenAnalytic
+import com.productschallenge.feature.product.analytic.screen.ProductListScreenAnalytic
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,8 +14,8 @@ import dagger.hilt.android.components.ViewModelComponent
 internal object ViewModelModule {
 
     @Provides
-    @AsyncTaskUtilsQualifier(ProductScreenAnalytic.SCREEN)
+    @AsyncTaskUtilsQualifier(ProductListScreenAnalytic.SCREEN)
     fun homeAsyncTaskUtils(
         analyticSender: AnalyticSender
-    ): AsyncTaskUtils = AsyncTaskUtils(analyticSender, ProductScreenAnalytic)
+    ): AsyncTaskUtils = AsyncTaskUtils(analyticSender, ProductListScreenAnalytic)
 }
