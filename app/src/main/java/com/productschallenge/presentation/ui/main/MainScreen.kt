@@ -24,10 +24,7 @@ internal fun MainScreen(
         theme = uiState.appTheme.theme
     ) {
         DialogHandler(uiState = uiState, onExecuteIntent = onExecuteIntent)
-        Navigation(
-            uiState,
-            uiEvent = uiEvent,
-        )
+        Navigation(uiState = uiState, uiEvent = uiEvent)
     }
 }
 

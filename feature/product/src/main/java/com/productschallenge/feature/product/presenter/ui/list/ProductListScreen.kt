@@ -46,6 +46,7 @@ import com.productschallenge.core.router.extension.navigateTo
 import com.productschallenge.core.ui.interfaces.Intent
 import com.productschallenge.core.ui.util.UiEventsObserver
 import com.productschallenge.feature.product.R
+import com.productschallenge.feature.product.presenter.enums.RatingStatus
 import com.productschallenge.feature.product.presenter.model.ProductItemListModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
@@ -124,27 +125,36 @@ private fun ProductRate(
 ) = with(productItemList) {
     val iconId = ratingStatus.iconId
     Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(Spacing.small)
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        if (iconId != null) {
-            Icon(
-                painter = painterResource(iconId),
-                contentDescription = null,
-                tint = ratingStatus.iconColor,
-                modifier = Modifier.size(ratingStatusSize),
-            )
-        } else {
-            HorizontalDivider(
-                modifier = Modifier.width(ratingStatusSize),
-                thickness = 2.dp,
-                color = ratingStatus.iconColor,
-            )
-        }
         Text(
-            text = rating,
+            text = "Rate:",
             style = MaterialTheme.typography.titleMedium
         )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(Spacing.small)
+        ) {
+            if (iconId != null) {
+                Icon(
+                    painter = painterResource(iconId),
+                    contentDescription = null,
+                    tint = ratingStatus.iconColor,
+                    modifier = Modifier.size(ratingStatusSize),
+                )
+            } else {
+                HorizontalDivider(
+                    modifier = Modifier.width(ratingStatusSize),
+                    thickness = 2.dp,
+                    color = ratingStatus.iconColor,
+                )
+            }
+            Text(
+                text = rating,
+                style = MaterialTheme.typography.titleMedium
+            )
+        }
     }
 }
 
@@ -156,7 +166,7 @@ private fun ProductListFilter(
     TextField(
         modifier = Modifier.fillMaxWidth(),
         textValue = uiState.filter,
-        labelText = stringResource(R.string.product_title),
+        labelText = stringResource(R.string.product_filter),
         trailingIcon = TextFieldIcon.CLEAR_TEXT,
         leadingIcon = TextFieldIcon.SEARCH
     ) {
@@ -202,7 +212,28 @@ private fun Preview() {
     ComposeTestTheme {
         ProductListScreen(
             uiState = ProductListUiState(
-                productScreenList = listOf()
+                productScreenList = listOf(
+                    ProductItemListModel(
+                        id = 1,
+                        title = "Product 1",
+                        rating = "4.5",
+                        ratingStatus = RatingStatus.LIKE,
+                    ),
+                    ProductItemListModel(
+                        id = 2,
+                        title = "Product 2",
+                        rating = "3.2",
+                        ratingStatus = RatingStatus.DISLIKE,
+                    ),
+                    ProductItemListModel(
+                        id = 3,
+                        title = "Product 3",
+                        rating = "5.0",
+                        ratingStatus = RatingStatus.NEUTRAL,
+                    )
+                ),
+                isLoading = false,
+                filter = "filter"
             )
         )
     }

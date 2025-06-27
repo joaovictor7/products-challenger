@@ -12,9 +12,7 @@ import com.productschallenge.core.router.extension.navigateBack
 import com.productschallenge.core.router.interfaces.NavGraph
 
 object DesignSystemNavGraph : NavGraph {
-    override fun NavGraphBuilder.register(
-        navController: NavHostController
-    ) {
+    override fun NavGraphBuilder.register(navController: NavHostController) {
         dialog<GenericErrorDialog> {
             SimpleDialog(GenericErrorParam) {
                 navController.navigateBack()

@@ -2,7 +2,6 @@ package com.productschallenge.core.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.productschallenge.core.database.data.converter.LocalDateTimeConverter
 import com.productschallenge.core.database.data.extension.addLogs
 import com.productschallenge.core.database.database.Database
 import com.productschallenge.core.database.domain.usecase.GetDatabaseKeyUseCase
@@ -34,7 +33,6 @@ internal object DatabaseModule {
         DATABASE_NAME
     )
         .openHelperFactory(getHelperFactory(getDatabaseKeyUseCase))
-        .addTypeConverter(LocalDateTimeConverter())
         .addLogs(buildConfigProvider.buildConfig)
         .build()
 
