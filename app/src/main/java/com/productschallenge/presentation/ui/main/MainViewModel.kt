@@ -10,7 +10,7 @@ import com.productschallenge.core.ui.interfaces.UiEvent
 import com.productschallenge.core.ui.interfaces.UiState
 import com.productschallenge.core.ui.util.AsyncTaskUtils
 import com.productschallenge.domain.usecase.GetAppThemeUseCase
-import com.productschallenge.feature.form.navigation.destination.FormDestination
+import com.productschallenge.domain.usecase.GetFirstDestinationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,6 +23,7 @@ import javax.inject.Inject
 internal class MainViewModel @Inject constructor(
     private val getAppThemeUseCase: GetAppThemeUseCase,
     private val fetchRemoteConfigUseCase: FetchRemoteConfigUseCase,
+    private val getFirstDestinationUseCase: GetFirstDestinationUseCase,
     private val navGraphs: Array<NavGraph>,
     @param:AsyncTaskUtilsQualifier(MainScreenAnalytic.SCREEN) private val asyncTaskUtils: AsyncTaskUtils,
 ) : BaseViewModel(), UiState<MainUiState>, UiEvent<MainUiEvent>, MainIntentReceiver {
@@ -49,7 +50,8 @@ internal class MainViewModel @Inject constructor(
     }
 
     private fun initUiState() = asyncTaskUtils.runAsyncTask(viewModelScope) {
-        _uiState.update { it.setInitUiState(FormDestination, navGraphs) }
+        val firstDestination = getFirstDestinationUseCase()
+        _uiState.update { it.setInitUiState(firstDestination, navGraphs) }
     }
 
     private fun appThemeObservable() {

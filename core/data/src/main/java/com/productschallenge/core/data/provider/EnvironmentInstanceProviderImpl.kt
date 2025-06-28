@@ -9,5 +9,5 @@ internal class EnvironmentInstanceProviderImpl @Inject constructor(
 ) : EnvironmentInstanceProvider {
 
     override fun <Instance> getInstance(instance: Instance, fakeInstance: Instance) =
-        if (buildConfigProvider.buildConfig.flavor == Flavor.DEVELOP) fakeInstance else instance
+        if (buildConfigProvider.buildConfig.environmentFlavor == Flavor.DEVELOP) fakeInstance else instance
 }

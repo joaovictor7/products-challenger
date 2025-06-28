@@ -22,7 +22,7 @@ internal class KoverConventionPlugin : Plugin<Project> {
                 currentProject {
                     createVariant(KOVER_VARIANT_NAME_REPORT) {
                         if (name != AppConfig.PROJECT_NAME) {
-                            add("developDebug")
+                            add("developFormDebug", "developProductsDebug")
                         }
                     }
                 }

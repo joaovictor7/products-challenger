@@ -16,7 +16,8 @@ internal class BuildConfigProviderImpl @Inject constructor() : BuildConfigProvid
         versionName = BuildConfig.VERSION_NAME,
         versionCode = BuildConfig.VERSION_CODE,
         buildType = BuildConfig.BUILD_TYPE.getBuildType(),
-        flavor = BuildConfig.FLAVOR.getFlavor(),
+        distributionFlavor = BuildConfig.FLAVOR_distribution.getFlavor(),
+        environmentFlavor = BuildConfig.FLAVOR_environment.getFlavor(),
         androidSdkVersion = Build.VERSION.SDK_INT,
     )
 
