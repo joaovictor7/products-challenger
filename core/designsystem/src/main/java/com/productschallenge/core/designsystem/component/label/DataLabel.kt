@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.productschallenge.core.designsystem.dimension.Spacing
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 import com.productschallenge.core.ui.R as UiRes
 
 @Composable
@@ -50,7 +50,7 @@ fun DataLabel(
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         DataLabel(
             labelTitleId = UiRes.string.close,
             labelText = "teste"

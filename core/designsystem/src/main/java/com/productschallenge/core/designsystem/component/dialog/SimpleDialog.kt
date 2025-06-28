@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.productschallenge.core.designsystem.R
 import com.productschallenge.core.designsystem.component.button.Button
 import com.productschallenge.core.designsystem.param.alertdialog.SimpleDialogParam
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 
 @Composable
 fun SimpleDialog(
@@ -47,7 +47,7 @@ fun SimpleDialog(
 @Composable
 @Preview
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         SimpleDialog(param = object : SimpleDialogParam {
             override val iconId = R.string.error_alert_dialog_generic_text
             override val titleId = R.string.error_alert_dialog_generic_title

@@ -1,6 +1,6 @@
 package com.productschallenge.feature.product.presenter.model
 
-import com.productschallenge.feature.product.presenter.enums.RatingStatus
+import RatingStatus
 
 internal data class ProductItemListModel(
     val id: Int,

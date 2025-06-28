@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.productschallenge.core.designsystem.component.dialog.SimpleDialog
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 import com.productschallenge.core.router.extension.navigateTo
 import com.productschallenge.core.ui.interfaces.Intent
 import com.productschallenge.core.ui.util.UiEventsObserver
@@ -19,7 +19,7 @@ internal fun MainScreen(
     uiEvent: Flow<MainUiEvent> = emptyFlow(),
     onExecuteIntent: (Intent<MainIntentReceiver>) -> Unit = {}
 ) {
-    ComposeTestTheme(
+    ProductsChallengeTheme(
         dynamicColor = uiState.appTheme.dynamicColor,
         theme = uiState.appTheme.theme
     ) {
@@ -66,7 +66,7 @@ private fun UiEventsHandler(
 @Composable
 @Preview
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         MainScreen(uiState = MainUiState())
     }
 }

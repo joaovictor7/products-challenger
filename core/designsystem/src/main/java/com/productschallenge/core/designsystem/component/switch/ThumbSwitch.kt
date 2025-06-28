@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.productschallenge.core.designsystem.enums.switchs.SwitchType
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 
 @Composable
 fun ThumbSwitch(
@@ -50,7 +50,7 @@ private fun getThumbContent(type: SwitchType?, checked: Boolean): @Composable ((
 @Preview
 private fun Preview() {
     var checked by remember { mutableStateOf(false) }
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         ThumbSwitch(
             checked = checked,
             type = SwitchType.CHECK

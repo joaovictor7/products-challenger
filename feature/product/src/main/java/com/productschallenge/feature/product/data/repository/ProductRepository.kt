@@ -24,4 +24,12 @@ internal class ProductRepository @Inject constructor(
         }
         return products
     }
+
+    suspend fun getAllProducts1(): List<ProductModel> {
+        val products = productResponseMapper
+            .mapperToModels(productRemoteDataSource.getAllProducts().products)
+        productLocalDataSource.clearAll()
+        productLocalDataSource.insertAll(productEntityMapper.mapperToEntities(products))
+        return products
+    }
 }

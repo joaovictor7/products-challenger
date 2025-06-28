@@ -9,7 +9,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.productschallenge.core.designsystem.R
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 
 @Composable
 fun BackButton(modifier: Modifier = Modifier) {
@@ -26,7 +26,7 @@ fun BackButton(modifier: Modifier = Modifier) {
 @Composable
 @Preview
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         BackButton()
     }
 }

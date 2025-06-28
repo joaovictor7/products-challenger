@@ -37,7 +37,7 @@ import com.productschallenge.core.designsystem.R
 import com.productschallenge.core.designsystem.dimension.Spacing
 import com.productschallenge.core.designsystem.extension.opacity
 import com.productschallenge.core.designsystem.param.dock.IconDockParam
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 
 /**
  * @param modifier set [height] is mandatory for correctly component show
@@ -135,7 +135,7 @@ private fun Int.convertToDp(density: Density) = with(density) { this@convertToDp
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         var selectedIndex by remember { mutableIntStateOf(2) }
         Box(modifier = Modifier.background(color = Color.Red)) {
             IconDock(

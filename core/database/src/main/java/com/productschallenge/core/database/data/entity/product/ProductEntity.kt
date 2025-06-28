@@ -13,5 +13,4 @@ data class ProductEntity(
     val rating: Double,
     val stock: Int,
     val thumbnail: String,
-    val isActive: Boolean = true,
 )

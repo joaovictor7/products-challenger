@@ -6,7 +6,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 
 @Composable
 fun Button(
@@ -27,7 +27,7 @@ fun Button(
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         Button(text = "Label") { }
     }
 }

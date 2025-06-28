@@ -8,6 +8,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.productschallenge.core.router.destination.product.ProductListDestination
 import com.productschallenge.core.router.interfaces.NavGraph
+import com.productschallenge.feature.product.navigation.destination.ProductDetailDestination
+import com.productschallenge.feature.product.presenter.ui.detail.ProductDetailScreen
+import com.productschallenge.feature.product.presenter.ui.detail.ProductDetailViewModel
 import com.productschallenge.feature.product.presenter.ui.list.ProductListScreen
 import com.productschallenge.feature.product.presenter.ui.list.ProductListViewModel
 
@@ -16,7 +19,7 @@ object ProductNavGraph : NavGraph {
         navController: NavHostController
     ) {
         composable<ProductListDestination> {
-            val viewModel: ProductListViewModel = hiltViewModel<ProductListViewModel>()
+            val viewModel = hiltViewModel<ProductListViewModel>()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             ProductListScreen(
                 uiState = uiState,
@@ -24,6 +27,11 @@ object ProductNavGraph : NavGraph {
                 onExecuteIntent = viewModel::executeIntent,
                 navController = navController
             )
+        }
+        composable<ProductDetailDestination> {
+            val viewModel = hiltViewModel<ProductDetailViewModel>()
+            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+            ProductDetailScreen(uiState = uiState)
         }
     }
 }

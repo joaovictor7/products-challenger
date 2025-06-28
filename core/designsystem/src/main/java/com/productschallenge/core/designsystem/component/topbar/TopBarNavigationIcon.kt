@@ -7,7 +7,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.productschallenge.core.designsystem.component.button.BackButton
 import com.productschallenge.core.designsystem.enums.topbar.TopBarAction
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 
 @Composable
 internal fun TopBarNavigationIcon(
@@ -33,7 +33,7 @@ internal fun TopBarNavigationIcon(
 @Composable
 @Preview
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         TopBarNavigationIcon(showBackButton = false, navigationAction = TopBarAction.MENU)
     }
 }

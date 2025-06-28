@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.productschallenge.core.analytic.event.CommonAnalyticEvent
 import com.productschallenge.core.analytic.sender.AnalyticSender
 import com.productschallenge.core.router.extension.dialogErrorDestination
+import com.productschallenge.core.router.model.NavigationModel
 import com.productschallenge.core.ui.base.BaseViewModel
 import com.productschallenge.core.ui.di.qualifier.AsyncTaskUtilsQualifier
 import com.productschallenge.core.ui.interfaces.UiEvent
@@ -13,6 +14,8 @@ import com.productschallenge.feature.product.analytic.screen.ProductListScreenAn
 import com.productschallenge.feature.product.domain.model.ProductModel
 import com.productschallenge.feature.product.domain.usecase.FilterProductsUseCase
 import com.productschallenge.feature.product.domain.usecase.GetAllProductsUseCase
+import com.productschallenge.feature.product.domain.usecase.ResyncProductsUseCase
+import com.productschallenge.feature.product.presenter.mapper.ProductDestinationlMapper
 import com.productschallenge.feature.product.presenter.mapper.ProductItemListMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -26,8 +29,10 @@ import javax.inject.Inject
 internal class ProductListViewModel @Inject constructor(
     private val analyticSender: AnalyticSender,
     private val getAllProductsUseCase: GetAllProductsUseCase,
+    private val resyncProductsUseCase: ResyncProductsUseCase,
     private val filterProductsUseCase: FilterProductsUseCase,
     private val productItemListMapper: ProductItemListMapper,
+    private val productDestinationlMapper: ProductDestinationlMapper,
     @param:AsyncTaskUtilsQualifier(ProductListScreenAnalytic.SCREEN) private val asyncTaskUtils: AsyncTaskUtils,
 ) : BaseViewModel(),
     UiState<ProductListUiState>,
@@ -55,23 +60,22 @@ internal class ProductListViewModel @Inject constructor(
         }
     }
 
-    override fun getAllProducts() {
+    override fun resyncProducts() {
         _uiState.update { it.setIsLoading(true) }
         asyncTaskUtils.runAsyncTask(
             coroutineScope = viewModelScope,
             onError = { errorHandler(it) },
             onCompletion = { _uiState.update { it.setIsLoading(false) } }
         ) {
-            productList = getAllProductsUseCase()
+            productList = resyncProductsUseCase()
             _uiState.update { it.setProductScreenList(productItemListMapper.mapperTo(productList)) }
         }
     }
 
-    override fun navigateToDetail(exchangeId: String) {
-//        val exchange = productList.find { it.id == exchangeId }
-//        exchangeMapper.mapperToDestination(exchange)?.let {
-//            _uiEvent.emitEvent(ProductListUiEvent.NavigateTo(NavigationModel(it)))
-//        }
+    override fun navigateToDetail(id: Int) {
+        val product = productList.find { it.id == id } ?: return
+        val destination = productDestinationlMapper.mapperToDestination(product)
+        _uiEvent.emitEvent(ProductListUiIntent.NavigateTo(NavigationModel(destination)))
     }
 
     override fun productFilter(filter: String) {
@@ -86,6 +90,18 @@ internal class ProductListViewModel @Inject constructor(
 
     override fun dismissSimpleDialog() {
         _uiState.update { it.setSimpleDialogParam(null) }
+    }
+
+    private fun getAllProducts() {
+        _uiState.update { it.setIsLoading(true) }
+        asyncTaskUtils.runAsyncTask(
+            coroutineScope = viewModelScope,
+            onError = { errorHandler(it) },
+            onCompletion = { _uiState.update { it.setIsLoading(false) } }
+        ) {
+            productList = getAllProductsUseCase()
+            _uiState.update { it.setProductScreenList(productItemListMapper.mapperTo(productList)) }
+        }
     }
 
     private fun errorHandler(error: Throwable) {

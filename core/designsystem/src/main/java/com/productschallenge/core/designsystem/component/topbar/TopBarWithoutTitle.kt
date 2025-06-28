@@ -5,7 +5,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.productschallenge.core.designsystem.enums.topbar.TopBarAction
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 import com.productschallenge.core.designsystem.util.getTopBarActions
 
 @Composable
@@ -33,7 +33,7 @@ fun TopBarWithoutTitle(
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         TopBarWithoutTitle()
     }
 }

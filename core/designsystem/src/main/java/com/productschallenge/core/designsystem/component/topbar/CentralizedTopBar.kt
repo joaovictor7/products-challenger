@@ -11,7 +11,7 @@ import com.productschallenge.core.designsystem.R
 import com.productschallenge.core.designsystem.enums.topbar.TopBarAction
 import com.productschallenge.core.designsystem.enums.topbar.TopBarColor
 import com.productschallenge.core.designsystem.enums.topbar.TopBarColor.Companion.getColor
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 import com.productschallenge.core.designsystem.util.getTopBarActions
 import com.productschallenge.core.designsystem.util.getTopBarTitle
 
@@ -65,7 +65,7 @@ fun CentralizedTopBar(
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         CentralizedTopBar(titleId = R.string.toolbar_back_button_content_description)
     }
 }

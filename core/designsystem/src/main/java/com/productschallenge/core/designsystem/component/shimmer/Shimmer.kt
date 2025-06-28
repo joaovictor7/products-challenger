@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.productschallenge.core.designsystem.extension.opacity
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 import com.productschallenge.core.designsystem.util.getSharedShimmerOffset
 
 @Composable
@@ -43,7 +43,7 @@ fun Shimmer(modifier: Modifier, offset: Float) {
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         val shimmerOffset by getSharedShimmerOffset()
         Shimmer(modifier = Modifier.size(300.dp), offset = shimmerOffset)
     }

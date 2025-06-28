@@ -19,7 +19,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.productschallenge.core.designsystem.enums.textfield.TextFieldIcon
 import com.productschallenge.core.designsystem.extension.opacity
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 import com.productschallenge.core.designsystem.util.getTextFieldTrailingIcon
 
 @Composable
@@ -85,7 +85,7 @@ fun TextField(
 @Composable
 @Preview
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         val textValue by rememberSaveable { mutableStateOf("teste") }
         TextField(
             enabled = true,

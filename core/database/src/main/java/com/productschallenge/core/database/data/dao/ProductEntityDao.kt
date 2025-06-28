@@ -8,10 +8,13 @@ import com.productschallenge.core.database.data.entity.product.ProductEntity
 
 @Dao
 interface ProductEntityDao {
+
+    @Query("DELETE FROM product")
+    suspend fun clearAll()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(products: List<ProductEntity>)
 
-
-    @Query("SELECT * FROM product WHERE isActive = 1")
+    @Query("SELECT * FROM product")
     suspend fun getAll(): List<ProductEntity>
 }

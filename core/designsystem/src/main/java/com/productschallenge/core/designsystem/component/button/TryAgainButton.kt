@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.productschallenge.core.designsystem.R
 import com.productschallenge.core.designsystem.dimension.Spacing
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 import com.productschallenge.core.ui.R as UiRes
 
 @Composable
@@ -54,7 +54,7 @@ fun TryAgainButton(
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         TryAgainButton(modifier = Modifier.size(width = 300.dp, height = 500.dp)) { }
     }
 }

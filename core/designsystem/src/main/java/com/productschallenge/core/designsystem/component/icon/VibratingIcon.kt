@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import com.productschallenge.core.designsystem.R
 import com.productschallenge.core.designsystem.extension.toDp
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 
 private const val DISPLACEMENT = 50f
 private const val DURATION = 30
@@ -87,7 +87,7 @@ suspend fun runVibrationAnimation(
 @Composable
 @Preview
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         VibratingIcon(
             iconId = R.drawable.ic_fingerprint_extra_large,
             iconTint = MaterialTheme.colorScheme.error,

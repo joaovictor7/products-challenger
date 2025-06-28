@@ -1,5 +1,6 @@
 package com.productschallenge.feature.product.presenter.ui.list
 
+import RatingStatus
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,20 +14,16 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,24 +31,22 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.productschallenge.core.designsystem.component.dialog.SimpleDialog
 import com.productschallenge.core.designsystem.component.pulltorefresh.PullToRefresh
+import com.productschallenge.core.designsystem.component.rating.Rating
 import com.productschallenge.core.designsystem.component.shimmer.Shimmer
 import com.productschallenge.core.designsystem.component.textfield.TextField
 import com.productschallenge.core.designsystem.dimension.Spacing
 import com.productschallenge.core.designsystem.dimension.screenMargin
 import com.productschallenge.core.designsystem.enums.textfield.TextFieldIcon
 import com.productschallenge.core.designsystem.extension.horizontalScreenMargin
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 import com.productschallenge.core.designsystem.util.getSharedShimmerOffset
 import com.productschallenge.core.router.extension.navigateTo
 import com.productschallenge.core.ui.interfaces.Intent
 import com.productschallenge.core.ui.util.UiEventsObserver
 import com.productschallenge.feature.product.R
-import com.productschallenge.feature.product.presenter.enums.RatingStatus
 import com.productschallenge.feature.product.presenter.model.ProductItemListModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
-
-private val ratingStatusSize = 20.dp
 
 @Composable
 internal fun ProductListScreen(
@@ -68,7 +63,7 @@ internal fun ProductListScreen(
             ProductListFilter(uiState = uiState, onExecuteIntent = onExecuteIntent)
             PullToRefresh(
                 isRefreshing = uiState.isLoading,
-                onRefresh = { onExecuteIntent(ProductListIntent.GetAllProducts) }
+                onRefresh = { onExecuteIntent(ProductListIntent.ResyncProducts) }
             ) {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
@@ -81,7 +76,7 @@ internal fun ProductListScreen(
                         }
                     } else {
                         items(uiState.productScreenList) {
-                            ExchangeItem(
+                            ProductItem(
                                 onExecuteIntent = onExecuteIntent,
                                 productItemListModel = it
                             )
@@ -97,13 +92,13 @@ internal fun ProductListScreen(
 }
 
 @Composable
-private fun ExchangeItem(
+private fun ProductItem(
     onExecuteIntent: (Intent<ProductListIntentReceiver>) -> Unit,
     productItemListModel: ProductItemListModel,
 ) = with(productItemListModel) {
     ElevatedCard(
         modifier = Modifier.fillMaxSize(),
-        onClick = { },
+        onClick = { onExecuteIntent(ProductListIntent.NavigateToDetail(id)) },
     ) {
         Column(
             modifier = Modifier.padding(screenMargin),
@@ -123,7 +118,6 @@ private fun ExchangeItem(
 private fun ProductRate(
     productItemList: ProductItemListModel,
 ) = with(productItemList) {
-    val iconId = ratingStatus.iconId
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
@@ -132,29 +126,11 @@ private fun ProductRate(
             text = "Rate:",
             style = MaterialTheme.typography.titleMedium
         )
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(Spacing.small)
-        ) {
-            if (iconId != null) {
-                Icon(
-                    painter = painterResource(iconId),
-                    contentDescription = null,
-                    tint = ratingStatus.iconColor,
-                    modifier = Modifier.size(ratingStatusSize),
-                )
-            } else {
-                HorizontalDivider(
-                    modifier = Modifier.width(ratingStatusSize),
-                    thickness = 2.dp,
-                    color = ratingStatus.iconColor,
-                )
-            }
-            Text(
-                text = rating,
-                style = MaterialTheme.typography.titleMedium
-            )
-        }
+        Rating(
+            modifier = Modifier.size(20.dp),
+            rating = rating,
+            ratingStatus = ratingStatus
+        )
     }
 }
 
@@ -209,7 +185,7 @@ private fun UiEventsHandler(
 @Preview
 @Composable
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         ProductListScreen(
             uiState = ProductListUiState(
                 productScreenList = listOf(

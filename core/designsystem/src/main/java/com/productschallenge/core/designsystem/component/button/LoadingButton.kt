@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.productschallenge.core.designsystem.R
 import com.productschallenge.core.designsystem.enums.button.LoadingButtonState
-import com.productschallenge.core.designsystem.theme.ComposeTestTheme
+import com.productschallenge.core.designsystem.theme.ProductsChallengeTheme
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
 
@@ -91,7 +91,7 @@ private fun loadingButtonHandler(loadingState: LoadingButtonState): LoadingButto
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    ProductsChallengeTheme {
         var isLoading by remember { mutableStateOf(false) }
         LoadingButton(text = "Test") {
             isLoading = true

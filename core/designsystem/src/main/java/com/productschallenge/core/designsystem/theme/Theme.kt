@@ -13,7 +13,7 @@ import com.productschallenge.core.designsystem.extension.isDarkMode
 import com.productschallenge.core.domain.enums.Theme
 
 @Composable
-fun ComposeTestTheme(
+fun ProductsChallengeTheme(
     theme: Theme = Theme.AUTO,
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit

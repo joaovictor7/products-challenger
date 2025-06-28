@@ -3,9 +3,9 @@ package com.productschallenge.feature.product.presenter.ui.list
 import com.productschallenge.core.ui.interfaces.Intent
 
 internal sealed interface ProductListIntent : Intent<ProductListIntentReceiver> {
-    data object GetAllProducts : ProductListIntent {
+    data object ResyncProducts : ProductListIntent {
         override fun execute(intentReceiver: ProductListIntentReceiver) {
-            intentReceiver.getAllProducts()
+            intentReceiver.resyncProducts()
         }
     }
 
@@ -15,9 +15,9 @@ internal sealed interface ProductListIntent : Intent<ProductListIntentReceiver> 
         }
     }
 
-    data class NavigateToDetail(private val exchangeId: String) : ProductListIntent {
+    data class NavigateToDetail(private val id: Int) : ProductListIntent {
         override fun execute(intentReceiver: ProductListIntentReceiver) {
-            intentReceiver.navigateToDetail(exchangeId)
+            intentReceiver.navigateToDetail(id)
         }
     }
 
