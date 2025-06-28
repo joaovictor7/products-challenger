@@ -6,9 +6,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.productschallenge.feature.product.navigation.destination.ProductListDestination
 import com.productschallenge.core.router.interfaces.NavGraph
 import com.productschallenge.feature.product.navigation.destination.ProductDetailDestination
+import com.productschallenge.feature.product.navigation.destination.ProductListDestination
 import com.productschallenge.feature.product.presenter.ui.detail.ProductDetailScreen
 import com.productschallenge.feature.product.presenter.ui.detail.ProductDetailViewModel
 import com.productschallenge.feature.product.presenter.ui.list.ProductListScreen

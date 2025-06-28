@@ -6,13 +6,31 @@ import com.productschallenge.feature.form.presenter.enums.FormFieldType
 import java.time.LocalDate
 
 internal sealed interface FormIntent : Intent<FormIntentReceiver> {
-    data class WatchingFormField(
+    data class SetFormTextField(
         private val index: Int,
         private val newValue: String,
         private val formFieldType: FormFieldType,
     ) : FormIntent {
         override fun execute(intentReceiver: FormIntentReceiver) {
-            intentReceiver.watchingFormField(index, newValue, formFieldType)
+            intentReceiver.setFormTextField(index, newValue, formFieldType)
+        }
+    }
+
+    data class FormTextFieldFocused(
+        private val index: Int,
+        private val formFieldType: FormFieldType,
+    ) : FormIntent {
+        override fun execute(intentReceiver: FormIntentReceiver) {
+            intentReceiver.formTextFieldFocused(index, formFieldType)
+        }
+    }
+
+    data class FormTextFieldUnfocused(
+        private val index: Int,
+        private val formFieldType: FormFieldType,
+    ) : FormIntent {
+        override fun execute(intentReceiver: FormIntentReceiver) {
+            intentReceiver.formTextFieldUnfocused(index, formFieldType)
         }
     }
 
@@ -24,17 +42,23 @@ internal sealed interface FormIntent : Intent<FormIntentReceiver> {
         }
     }
 
-    data class WatchingClassification(
+    data class SetClassification(
         private val classification: FormClassification,
     ) : FormIntent {
         override fun execute(intentReceiver: FormIntentReceiver) {
-            intentReceiver.watchingClassification(classification)
+            intentReceiver.setClassification(classification)
         }
     }
 
-    data object Submit : FormIntent {
+    data object SubmitForm : FormIntent {
         override fun execute(intentReceiver: FormIntentReceiver) {
-            intentReceiver.submit()
+            intentReceiver.submitForm()
+        }
+    }
+
+    data object DismissSimpleDialog : FormIntent {
+        override fun execute(intentReceiver: FormIntentReceiver) {
+            intentReceiver.dismissSimpleDialog()
         }
     }
 }

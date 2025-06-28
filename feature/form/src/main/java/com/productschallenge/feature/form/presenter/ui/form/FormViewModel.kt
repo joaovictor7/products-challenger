@@ -3,6 +3,8 @@ package com.productschallenge.feature.form.presenter.ui.form
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.viewModelScope
 import com.productschallenge.common.extension.convertToString
+import com.productschallenge.common.extension.isEmailAddress
+import com.productschallenge.common.extension.orFalse
 import com.productschallenge.core.analytic.event.CommonAnalyticEvent
 import com.productschallenge.core.analytic.sender.AnalyticSender
 import com.productschallenge.core.ui.base.BaseViewModel
@@ -10,11 +12,12 @@ import com.productschallenge.core.ui.di.qualifier.AsyncTaskUtilsQualifier
 import com.productschallenge.core.ui.extension.uiStateValue
 import com.productschallenge.core.ui.interfaces.UiState
 import com.productschallenge.core.ui.util.AsyncTaskUtils
+import com.productschallenge.feature.form.R
 import com.productschallenge.feature.form.analytic.screen.FormScreenAnalytic
 import com.productschallenge.feature.form.domain.emuns.FormClassification
-import com.productschallenge.feature.form.domain.model.FormModel
-import com.productschallenge.feature.form.domain.usecase.CheckDataFormUseCase
 import com.productschallenge.feature.form.presenter.enums.FormFieldType
+import com.productschallenge.feature.form.presenter.model.FormTextFieldModel
+import com.productschallenge.feature.form.presenter.ui.dialog.FormSimpleDialogParam
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,13 +28,8 @@ import javax.inject.Inject
 @HiltViewModel
 internal class FormViewModel @Inject constructor(
     private val analyticSender: AnalyticSender,
-    private val checkDataFormUseCase: CheckDataFormUseCase,
     @param:AsyncTaskUtilsQualifier(FormScreenAnalytic.SCREEN) private val asyncTaskUtils: AsyncTaskUtils,
-) : BaseViewModel(),
-    UiState<FormUiState>,
-    FormIntentReceiver {
-
-    private var form = FormModel()
+) : BaseViewModel(), UiState<FormUiState>, FormIntentReceiver {
 
     override val intentReceiver = this
 
@@ -48,11 +46,30 @@ internal class FormViewModel @Inject constructor(
         }
     }
 
-    override fun watchingFormField(index: Int, newValue: String, formFieldType: FormFieldType) {
+    override fun setFormTextField(index: Int, newValue: String, formFieldType: FormFieldType) {
+        val formTextField = uiStateValue.fields.getOrNull(index) ?: return
         when (formFieldType) {
-            FormFieldType.PROMOTIONAL_CODE -> handlePromotionalCodeField(index, newValue)
-            FormFieldType.PHONE -> handlePhoneCodeField(index, newValue)
-            else -> handleFormField(index, newValue)
+            FormFieldType.PROMOTIONAL_CODE -> setPromotionalCodeFormTextField(
+                index, newValue, formTextField
+            )
+            FormFieldType.PHONE -> setPhoneNumberFormTextField(index, newValue, formTextField)
+            FormFieldType.EMAIL -> setEmailFormTextField(index, newValue, formTextField)
+            else -> updateFormTextFields(index, formTextField.copy(value = newValue))
+        }
+    }
+
+    override fun formTextFieldFocused(index: Int, formFieldType: FormFieldType) {
+        val formTextField = uiStateValue.fields.getOrNull(index) ?: return
+        updateFormTextFields(index, formTextField.copy(errorMsgId = null))
+    }
+
+    override fun formTextFieldUnfocused(index: Int, formFieldType: FormFieldType) {
+        val formTextField = uiStateValue.fields.getOrNull(index)
+            .takeIf { it?.value?.isNotBlank().orFalse } ?: return
+        when (formFieldType) {
+            FormFieldType.EMAIL -> checkEmailField(index, formTextField)
+            FormFieldType.PROMOTIONAL_CODE -> checkPromotionalCodeField(index, formTextField)
+            else -> Unit
         }
     }
 
@@ -61,42 +78,93 @@ internal class FormViewModel @Inject constructor(
         val index = uiStateValue.fields.indexOfFirst {
             it.type == FormFieldType.DELIVERY_DATE
         }.takeIf { it != -1 } ?: return
-        handleFormField(index, dateString)
+        val formTextField = uiStateValue.fields.getOrNull(index) ?: return
+        updateFormTextFields(index, formTextField.copy(value = dateString, isValid = true))
     }
 
-    override fun watchingClassification(classification: FormClassification) {
+    override fun setClassification(classification: FormClassification) {
         _uiState.update { it.copy(classification = classification) }
     }
 
-    override fun submit() {
-        TODO("Not yet implemented")
+    override fun submitForm() {
+        _uiState.update { it.copy(simpleDialogParam = FormSimpleDialogParam.Success) }
     }
 
-    private fun handleFormField(index: Int, newValue: String) {
+    override fun dismissSimpleDialog() {
+        _uiState.update { it.copy(simpleDialogParam = null) }
+    }
+
+    private fun setEmailFormTextField(
+        index: Int,
+        newValue: String,
+        formTextField: FormTextFieldModel
+    ) {
+        updateFormTextFields(
+            index,
+            formTextField.copy(value = newValue, isValid = newValue.isEmailAddress)
+        )
+    }
+
+    private fun setPhoneNumberFormTextField(
+        index: Int,
+        newValue: String,
+        formTextField: FormTextFieldModel
+    ) {
+        if (newValue.isDigitsOnly()) {
+            updateFormTextFields(
+                index,
+                formTextField.copy(
+                    value = newValue,
+                    isValid = newValue.isNotBlank()
+                )
+            )
+        }
+    }
+
+    private fun setPromotionalCodeFormTextField(
+        index: Int,
+        newValue: String,
+        formTextField: FormTextFieldModel
+    ) {
+        if (newValue.length > MAX_PROMOTIONAL_CODE_LENGTH) return
+        val upper = newValue.uppercase()
+        if (Regex("^[A-Z0-9-]*$").matches(upper)) {
+            updateFormTextFields(
+                index,
+                formTextField.copy(
+                    value = upper,
+                    isValid = upper.length >= MIN_PROMOTIONAL_CODE_LENGTH
+                )
+            )
+        }
+    }
+
+    private fun updateFormTextFields(index: Int, formTextField: FormTextFieldModel) {
         _uiState.update {
-            val field = it.fields.getOrNull(index) ?: return
             val formTextFieldModels = it.fields.toMutableList().apply {
-                this[index] = field.copy(value = newValue)
+                this[index] = formTextField
             }
             it.copy(fields = formTextFieldModels)
         }
     }
 
-    private fun handlePhoneCodeField(index: Int, newValue: String) {
-        if (newValue.isDigitsOnly()) {
-            handleFormField(index, newValue)
+    private fun checkEmailField(index: Int, formTextField: FormTextFieldModel) {
+        if (!formTextField.value.isEmailAddress) {
+            updateFormTextFields(index, formTextField.copy(errorMsgId = R.string.form_email_error))
         }
     }
 
-    private fun handlePromotionalCodeField(index: Int, newValue: String) {
-        if (newValue.length > MAX_PROMOTIONAL_CODE_LENGTH) return
-        val upper = newValue.uppercase()
-        if (Regex("^[A-Z0-9-]*$").matches(upper)) {
-            handleFormField(index, upper)
+    private fun checkPromotionalCodeField(index: Int, formTextField: FormTextFieldModel) {
+        if (formTextField.value.length < MIN_PROMOTIONAL_CODE_LENGTH) {
+            updateFormTextFields(
+                index,
+                formTextField.copy(errorMsgId = R.string.form_promotional_code_error)
+            )
         }
     }
 
     private companion object {
         const val MAX_PROMOTIONAL_CODE_LENGTH = 7
+        const val MIN_PROMOTIONAL_CODE_LENGTH = 3
     }
 }

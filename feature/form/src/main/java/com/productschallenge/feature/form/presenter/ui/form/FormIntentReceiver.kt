@@ -6,8 +6,11 @@ import com.productschallenge.feature.form.presenter.enums.FormFieldType
 import java.time.LocalDate
 
 internal interface FormIntentReceiver : IntentReceiver<FormIntentReceiver> {
-    fun watchingFormField(index: Int, newValue: String, formFieldType: FormFieldType)
+    fun setFormTextField(index: Int, newValue: String, formFieldType: FormFieldType)
+    fun formTextFieldFocused(index: Int, formFieldType: FormFieldType)
+    fun formTextFieldUnfocused(index: Int, formFieldType: FormFieldType)
     fun selectedDate(selectedDate: LocalDate)
-    fun watchingClassification(classification: FormClassification)
-    fun submit()
+    fun setClassification(classification: FormClassification)
+    fun submitForm()
+    fun dismissSimpleDialog()
 }
