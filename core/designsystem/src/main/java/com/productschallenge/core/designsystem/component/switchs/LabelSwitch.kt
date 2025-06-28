@@ -1,4 +1,4 @@
-package com.productschallenge.core.designsystem.component.switch
+package com.productschallenge.core.designsystem.component.switchs
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement

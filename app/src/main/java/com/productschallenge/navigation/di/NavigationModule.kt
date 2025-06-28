@@ -2,6 +2,7 @@ package com.productschallenge.navigation.di
 
 import com.productschallenge.core.designsystem.navigation.DesignSystemNavGraph
 import com.productschallenge.core.router.interfaces.NavGraph
+import com.productschallenge.feature.form.navigation.FormNavGraph
 import com.productschallenge.feature.product.navigation.ProductNavGraph
 import dagger.Module
 import dagger.Provides
@@ -16,5 +17,6 @@ internal class NavigationModule {
     fun navGraphs(): Array<NavGraph> = arrayOf(
         DesignSystemNavGraph,
         ProductNavGraph,
+        FormNavGraph,
     )
 }

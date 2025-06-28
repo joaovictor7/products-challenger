@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="form_name_label">Name</string>
+    <string name="form_email_label">Email</string>
+    <string name="form_number_label">Number</string>
+    <string name="form_delivery_date_label">Delivery date</string>
+    <string name="form_promotional_code_label">Promotional code</string>
+    <string name="form_classification_label">Classification</string>
+    <string name="form_bad_classification">Bad</string>
+    <string name="form_satisfactory_classification">Satisfactory</string>
+    <string name="form_good_classification">Good</string>
+    <string name="form_very_good_classification">Very good</string>
+    <string name="form_excellent_classification">Excellent</string>
+</resources>

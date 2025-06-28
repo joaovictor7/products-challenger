@@ -1,4 +1,4 @@
-package com.productschallenge.core.designsystem.component.switch
+package com.productschallenge.core.designsystem.component.switchs
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon

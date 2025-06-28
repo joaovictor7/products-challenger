@@ -22,6 +22,7 @@ dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.analytic)
     implementation(projects.feature.product)
+    implementation(projects.feature.form)
     implementation(platform(libs.firebase.bom))
     implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.splash.screen)

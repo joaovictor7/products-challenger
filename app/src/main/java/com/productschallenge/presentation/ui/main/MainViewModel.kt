@@ -1,7 +1,6 @@
 package com.productschallenge.presentation.ui.main
 
 import androidx.lifecycle.viewModelScope
-import com.productschallenge.core.router.destination.product.ProductListDestination
 import com.productschallenge.analytic.screen.MainScreenAnalytic
 import com.productschallenge.core.domain.usecase.remoteconfig.FetchRemoteConfigUseCase
 import com.productschallenge.core.router.interfaces.NavGraph
@@ -11,6 +10,7 @@ import com.productschallenge.core.ui.interfaces.UiEvent
 import com.productschallenge.core.ui.interfaces.UiState
 import com.productschallenge.core.ui.util.AsyncTaskUtils
 import com.productschallenge.domain.usecase.GetAppThemeUseCase
+import com.productschallenge.feature.form.navigation.destination.FormDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -49,8 +49,7 @@ internal class MainViewModel @Inject constructor(
     }
 
     private fun initUiState() = asyncTaskUtils.runAsyncTask(viewModelScope) {
-        val firstDestination = ProductListDestination
-        _uiState.update { it.setInitUiState(firstDestination, navGraphs) }
+        _uiState.update { it.setInitUiState(FormDestination, navGraphs) }
     }
 
     private fun appThemeObservable() {

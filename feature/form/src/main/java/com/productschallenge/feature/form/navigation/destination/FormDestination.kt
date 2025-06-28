@@ -1,7 +1,7 @@
-package com.productschallenge.core.router.destination.product
+package com.productschallenge.feature.form.navigation.destination
 
 import com.productschallenge.core.router.interfaces.Destination
 import kotlinx.serialization.Serializable
 
 @Serializable
-object ProductListDestination : Destination
+data object FormDestination : Destination
