@@ -74,14 +74,6 @@ cd dummyjson-challenge
 | `developFormDebug`       | Mock local + Formulário         |
 | `developProductsStaging` | API real + Listagem de Produtos |
 
-Para executar um flavor específico:
-
-```bash
-./gradlew installDevelopProductsStagingDebug
-```
-
-Ou configure no painel de build variants do Android Studio.
-
 ## 🤔 Decisões Técnicas
 
 - Utilização de **Room** ao invés de simples cache em memória para garantir persistência entre execuções.
