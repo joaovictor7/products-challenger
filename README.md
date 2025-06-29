@@ -57,12 +57,12 @@ cd dummyjson-challenge
 
 #### Flavors disponíveis:
 
-- **Dimension **``**:**
+- **Dimension **`Environment`**:**
 
   - `Debug`: ambiente local mockado, usando JSONs para simular API
   - `Staging`: ambiente de homologação, com dados reais da API DummyJSON
 
-- **Dimension **``**:**
+- **Dimension **`Distribution`**:**
 
   - `Form`: inicia o app diretamente na tela do formulário validado
   - `Products`: inicia na tela de listagem de produtos
@@ -103,6 +103,22 @@ Ou configure no painel de build variants do Android Studio.
 - Uso de `MockK` para simular dependências
 - Cobertura de código monitorada via `Kover`
 
+### 📊 Gerando relatório de cobertura com Kover
+
+Para gerar o relatório HTML de cobertura de testes, execute o seguinte comando:
+
+```bash
+./gradlew koverHtmlReportProject
+```
+
+O relatório será gerado automaticamente na pasta:
+
+```
+/kover
+```
+
+Abra o arquivo `index.html` dentro dessa pasta para visualizar os resultados no navegador.
+
 ## 💬 Considerações Finais
 
 🎯 Todos os requisitos do desafio foram implementados com foco em **qualidade de código**, **arquitetura limpa** e **experiência do usuário**.
@@ -110,8 +126,4 @@ Ou configure no painel de build variants do Android Studio.
 ⚠️ Apenas os flavors `Debug` e `Staging` estão disponíveis.
 
 ⚠️ Foi implementado testes unitários apenas em ViewModels.
-
----
-
-Made with ❤️ by João Victor de Deus Matos
 
