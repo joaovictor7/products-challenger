@@ -60,7 +60,7 @@ cd dummyjson-challenge
 
 - **Dimension **`Environment`**:**
 
-  - `Debug`: ambiente local mockado, usando JSONs para simular API
+  - `Develop`: ambiente local mockado, usando JSONs para simular API
   - `Staging`: ambiente de homologação, com dados reais da API DummyJSON
 
 - **Dimension **`Distribution`**:**
