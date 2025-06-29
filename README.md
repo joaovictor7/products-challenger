@@ -40,7 +40,7 @@ Essas escolhas foram feitas visando manter o projeto moderno, testável, eficien
 ### Pré-requisitos
 
 - Android Studio Hedgehog ou superior
-- JDK 17
+- JDK 22
 
 ### Passo a passo:
 
