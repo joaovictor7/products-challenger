@@ -51,7 +51,7 @@ import kotlinx.coroutines.flow.emptyFlow
 @Composable
 internal fun ProductListScreen(
     uiState: ProductListUiState,
-    uiEvent: Flow<ProductListUiIntent> = emptyFlow(),
+    uiEvent: Flow<ProductListUiEvent> = emptyFlow(),
     onExecuteIntent: (Intent<ProductListIntentReceiver>) -> Unit = {},
     navController: NavHostController = rememberNavController(),
 ) {
@@ -75,7 +75,7 @@ internal fun ProductListScreen(
                             ExchangeItemShimmer(shimmerOffset = shimmerOffset)
                         }
                     } else {
-                        items(uiState.productScreenList) {
+                        items(uiState.productItemList) {
                             ProductItem(
                                 onExecuteIntent = onExecuteIntent,
                                 productItemListModel = it
@@ -172,12 +172,12 @@ private fun DialogHandler(
 
 @Composable
 private fun UiEventsHandler(
-    uiEvent: Flow<ProductListUiIntent>,
+    uiEvent: Flow<ProductListUiEvent>,
     navController: NavHostController,
 ) {
     UiEventsObserver(uiEvent) {
         when (it) {
-            is ProductListUiIntent.NavigateTo -> navController.navigateTo(it.navigationModel)
+            is ProductListUiEvent.NavigateTo -> navController.navigateTo(it.navigationModel)
         }
     }
 }
@@ -188,7 +188,7 @@ private fun Preview() {
     ProductsChallengeTheme {
         ProductListScreen(
             uiState = ProductListUiState(
-                productScreenList = listOf(
+                productItemList = listOf(
                     ProductItemListModel(
                         id = 1,
                         title = "Product 1",

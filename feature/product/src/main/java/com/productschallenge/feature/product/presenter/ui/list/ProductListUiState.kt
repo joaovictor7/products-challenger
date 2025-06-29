@@ -5,7 +5,7 @@ import com.productschallenge.feature.product.presenter.model.ProductItemListMode
 
 internal data class ProductListUiState(
     val filter: String = String(),
-    val productScreenList: List<ProductItemListModel> = emptyList(),
+    val productItemList: List<ProductItemListModel> = emptyList(),
     val simpleDialogParam: SimpleDialogParam? = null,
     val isLoading: Boolean = false
 ) {
@@ -15,14 +15,14 @@ internal data class ProductListUiState(
         exchangeScreenList: List<ProductItemListModel>,
         filter: String = String(),
     ) = copy(
-        productScreenList = exchangeScreenList,
+        productItemList = exchangeScreenList,
         filter = filter,
     )
 
     fun setProductListFiltered(
         exchangeFilter: String,
         exchangeScreenList: List<ProductItemListModel>
-    ) = copy(filter = exchangeFilter, productScreenList = exchangeScreenList)
+    ) = copy(filter = exchangeFilter, productItemList = exchangeScreenList)
 
     fun setSimpleDialogParam(simpleDialogParam: SimpleDialogParam?) =
         copy(simpleDialogParam = simpleDialogParam)

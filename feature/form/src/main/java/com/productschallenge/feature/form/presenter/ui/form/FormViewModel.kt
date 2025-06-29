@@ -46,27 +46,27 @@ internal class FormViewModel @Inject constructor(
         }
     }
 
-    override fun setFormTextField(index: Int, newValue: String, formFieldType: FormFieldType) {
+    override fun setFormTextField(index: Int, newValue: String) {
         val formTextField = uiStateValue.fields.getOrNull(index) ?: return
-        when (formFieldType) {
+        when (formTextField.type) {
             FormFieldType.PROMOTIONAL_CODE -> setPromotionalCodeFormTextField(
                 index, newValue, formTextField
             )
-            FormFieldType.PHONE -> setPhoneNumberFormTextField(index, newValue, formTextField)
+            FormFieldType.PHONE_NUMBER -> setPhoneNumberFormTextField(index, newValue, formTextField)
             FormFieldType.EMAIL -> setEmailFormTextField(index, newValue, formTextField)
             else -> updateFormTextFields(index, formTextField.copy(value = newValue))
         }
     }
 
-    override fun formTextFieldFocused(index: Int, formFieldType: FormFieldType) {
+    override fun formTextFieldFocused(index: Int) {
         val formTextField = uiStateValue.fields.getOrNull(index) ?: return
         updateFormTextFields(index, formTextField.copy(errorMsgId = null))
     }
 
-    override fun formTextFieldUnfocused(index: Int, formFieldType: FormFieldType) {
+    override fun formTextFieldUnfocused(index: Int) {
         val formTextField = uiStateValue.fields.getOrNull(index)
             .takeIf { it?.value?.isNotBlank().orFalse } ?: return
-        when (formFieldType) {
+        when (formTextField.type) {
             FormFieldType.EMAIL -> checkEmailField(index, formTextField)
             FormFieldType.PROMOTIONAL_CODE -> checkPromotionalCodeField(index, formTextField)
             else -> Unit

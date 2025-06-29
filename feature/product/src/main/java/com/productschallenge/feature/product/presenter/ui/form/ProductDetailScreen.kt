@@ -1,4 +1,4 @@
-package com.productschallenge.feature.product.presenter.ui.detail
+package com.productschallenge.feature.product.presenter.ui.form
 
 import RatingStatus
 import androidx.compose.foundation.layout.Arrangement
@@ -50,7 +50,7 @@ internal fun ProductDetailScreen(uiState: ProductDetailUiState) {
         modifier = Modifier.horizontalScreenMargin(),
         topBar = { LeftTopBar(titleId = R.string.product_title) },
     ) {
-        uiState.imageUrl?.let {
+        uiState.thumbnail?.let {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                 AsyncImage(
                     url = it,
@@ -113,7 +113,7 @@ private fun PreviewProductDetailScreen() {
             ProductDetailUiState(
                 title = "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
                 description = "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-                imageUrl = "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+                thumbnail = "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
                 infoRows = listOf(
                     ProductDetailRow(R.string.product_detail_price, "109.95"),
                     ProductDetailRow(R.string.product_detail_price, "men's clothing"),

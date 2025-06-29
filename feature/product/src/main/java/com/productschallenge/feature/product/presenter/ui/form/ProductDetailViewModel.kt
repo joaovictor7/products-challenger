@@ -1,4 +1,4 @@
-package com.productschallenge.feature.product.presenter.ui.detail
+package com.productschallenge.feature.product.presenter.ui.form
 
 import androidx.lifecycle.viewModelScope
 import com.productschallenge.core.analytic.event.CommonAnalyticEvent

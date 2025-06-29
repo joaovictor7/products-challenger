@@ -80,7 +80,7 @@ internal fun FormScreen(
                 TextField(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .formTextFieldFocusManager(onExecuteIntent, index, field.type),
+                        .formTextFieldFocusManager(onExecuteIntent, index),
                     labelText = stringResource(field.type.labelId),
                     textValue = field.value,
                     leadingIcon = field.leadingIcon,
@@ -91,7 +91,7 @@ internal fun FormScreen(
                     onClick = if (field.isDeliveryDate) {
                         { showDatePicker.value = true }
                     } else null
-                ) { onExecuteIntent(FormIntent.SetFormTextField(index, it, field.type)) }
+                ) { onExecuteIntent(FormIntent.SetFormTextField(index, it)) }
             }
             ClassificationField(
                 onExecuteIntent = onExecuteIntent,
@@ -192,16 +192,12 @@ private fun DialogHandler(
 private fun Modifier.formTextFieldFocusManager(
     onExecuteIntent: (Intent<FormIntentReceiver>) -> Unit,
     index: Int,
-    fieldType: FormFieldType,
 ) = onFocusChanged {
     if (it.isFocused) {
-        onExecuteIntent(FormIntent.FormTextFieldFocused(index, fieldType))
+        onExecuteIntent(FormIntent.FormTextFieldFocused(index))
     } else {
         onExecuteIntent(
-            FormIntent.FormTextFieldUnfocused(
-                index,
-                fieldType
-            )
+            FormIntent.FormTextFieldUnfocused(index)
         )
     }
 }

@@ -18,7 +18,7 @@ internal data class FormUiState(
         val initialFields = listOf(
             FormTextFieldModel(FormFieldType.NAME, isValid = true),
             FormTextFieldModel(FormFieldType.EMAIL, keyboardType = KeyboardType.Email),
-            FormTextFieldModel(FormFieldType.PHONE, keyboardType = KeyboardType.Number),
+            FormTextFieldModel(FormFieldType.PHONE_NUMBER, keyboardType = KeyboardType.Number),
             FormTextFieldModel(FormFieldType.PROMOTIONAL_CODE),
             FormTextFieldModel(FormFieldType.DELIVERY_DATE, leadingIcon = TextFieldIcon.CALENDAR),
         )

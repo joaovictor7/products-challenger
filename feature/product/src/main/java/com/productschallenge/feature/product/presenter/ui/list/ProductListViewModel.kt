@@ -36,7 +36,7 @@ internal class ProductListViewModel @Inject constructor(
     @param:AsyncTaskUtilsQualifier(ProductListScreenAnalytic.SCREEN) private val asyncTaskUtils: AsyncTaskUtils,
 ) : BaseViewModel(),
     UiState<ProductListUiState>,
-    UiEvent<ProductListUiIntent>,
+    UiEvent<ProductListUiEvent>,
     ProductListIntentReceiver {
 
     override val intentReceiver = this
@@ -46,7 +46,7 @@ internal class ProductListViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ProductListUiState())
     override val uiState = _uiState.asStateFlow()
 
-    private val _uiEvent = MutableSharedFlow<ProductListUiIntent>()
+    private val _uiEvent = MutableSharedFlow<ProductListUiEvent>()
     override val uiEvent = _uiEvent.asSharedFlow()
 
     init {
@@ -75,7 +75,7 @@ internal class ProductListViewModel @Inject constructor(
     override fun navigateToDetail(id: Int) {
         val product = productList.find { it.id == id } ?: return
         val destination = productDestinationlMapper.mapperToDestination(product)
-        _uiEvent.emitEvent(ProductListUiIntent.NavigateTo(NavigationModel(destination)))
+        _uiEvent.emitEvent(ProductListUiEvent.NavigateTo(NavigationModel(destination)))
     }
 
     override fun productFilter(filter: String) {
@@ -96,7 +96,7 @@ internal class ProductListViewModel @Inject constructor(
         _uiState.update { it.setIsLoading(true) }
         asyncTaskUtils.runAsyncTask(
             coroutineScope = viewModelScope,
-            onError = { errorHandler(it) },
+            onError = ::errorHandler,
             onCompletion = { _uiState.update { it.setIsLoading(false) } }
         ) {
             productList = getAllProductsUseCase()
@@ -105,6 +105,6 @@ internal class ProductListViewModel @Inject constructor(
     }
 
     private fun errorHandler(error: Throwable) {
-        _uiEvent.emitEvent(ProductListUiIntent.NavigateTo(error.dialogErrorDestination()))
+        _uiEvent.emitEvent(ProductListUiEvent.NavigateTo(error.dialogErrorDestination()))
     }
 }

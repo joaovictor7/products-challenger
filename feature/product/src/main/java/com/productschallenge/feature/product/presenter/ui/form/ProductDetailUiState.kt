@@ -1,9 +1,9 @@
-package com.productschallenge.feature.product.presenter.ui.detail
+package com.productschallenge.feature.product.presenter.ui.form
 
 import com.productschallenge.feature.product.presenter.model.ProductDetailRow
 
 internal data class ProductDetailUiState(
-    val imageUrl: String? = null,
+    val thumbnail: String? = null,
     val title: String = String(),
     val description: String = String(),
     val infoRows: List<ProductDetailRow> = emptyList(),
@@ -14,7 +14,7 @@ internal data class ProductDetailUiState(
         description: String,
         infoRows: List<ProductDetailRow>,
     ) = copy(
-        imageUrl = imageUrl,
+        thumbnail = imageUrl,
         title = title,
         description = description,
         infoRows = infoRows,
