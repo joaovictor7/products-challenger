@@ -3,7 +3,7 @@
 
     <string name="form_name_label">Name</string>
     <string name="form_email_label">Email</string>
-    <string name="form_number_label">Number</string>
+    <string name="form_number_label">Phone number</string>
     <string name="form_delivery_date_label">Delivery date</string>
     <string name="form_promotional_code_label">Promotional code</string>
     <string name="form_classification_label">Classification</string>

@@ -3,7 +3,7 @@
 
     <string name="form_name_label">Nome</string>
     <string name="form_email_label">E-mail</string>
-    <string name="form_number_label">Número</string>
+    <string name="form_number_label">Número de telefone</string>
     <string name="form_delivery_date_label">Data de entrega</string>
     <string name="form_promotional_code_label">Código promocional</string>
     <string name="form_classification_label">Classificação</string>
