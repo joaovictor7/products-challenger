@@ -14,17 +14,17 @@ internal class AnalyticSenderImpl @Inject constructor(
     private val buildConfigProvider: BuildConfigProvider
 ) : AnalyticSender {
 
-    override suspend fun sendEvent(event: AnalyticEvent) {
+    override fun sendEvent(event: AnalyticEvent) {
         val bundle = createBundle(event)
         analyticsRepository.logEvent(event.tag, bundle)
     }
 
-    override suspend fun sendErrorEvent(event: ErrorAnalyticEvent) {
+    override fun sendErrorEvent(event: ErrorAnalyticEvent) {
         val bundle = createBundle(event)
         analyticsRepository.logNonFatalError(event.tag, event.error, bundle)
     }
 
-    private suspend fun createBundle(event: AnalyticEvent): Bundle {
+    private fun createBundle(event: AnalyticEvent): Bundle {
         return bundleOf(
             DATE_TIME to ZonedDateTime.now().toString(),
             APP_VERSION to buildConfigProvider.buildConfig.versionName,

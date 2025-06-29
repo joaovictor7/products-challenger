@@ -1,4 +1,4 @@
-package com.productschallenge.feature.product.analytic
+package com.productschallenge.feature.form.analytic
 
 import com.productschallenge.core.analytic.screen.ScreenAnalytic
 
