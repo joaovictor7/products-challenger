@@ -10,6 +10,7 @@ Este projeto é uma solução para o desafio técnico de entrevista, que consist
 ✅ Tela de detalhe do produto com informações completas\
 ✅ Formulário validado com múltiplos campos e regras específicas\
 ✅ Suporte a múltiplos sabores (flavors) de build para modularização do projeto
+✅ Adaptação automática ao tema do sistema (modo claro e escuro)
 
 ## 🏗️ Arquitetura e Abordagem
 
