@@ -116,7 +116,7 @@ Abra o arquivo `index.html` dentro dessa pasta para visualizar os resultados no 
 
 🎯 Todos os requisitos do desafio foram implementados com foco em **qualidade de código**, **arquitetura limpa** e **experiência do usuário**.
 
-⚠️ Apenas os flavors `Debug` e `Staging` estão disponíveis.
+⚠️ Apenas os flavors `Develop` e `Staging` estão disponíveis.
 
 ⚠️ Foi implementado testes unitários apenas em ViewModels.
 
