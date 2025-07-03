@@ -9,7 +9,7 @@ Este projeto é uma solução para o desafio técnico de entrevista, que consist
 ✅ Pesquisa avançada em tempo real (nome ou descrição, insensível a maiúsculas/minúsculas/acentos e ordem dos termos)\
 ✅ Tela de detalhe do produto com informações completas\
 ✅ Formulário validado com múltiplos campos e regras específicas\
-✅ Suporte a múltiplos sabores (flavors) de build para modularização do projeto
+✅ Suporte a múltiplos flavors de build para modularização do projeto\
 ✅ Adaptação automática ao tema do sistema (modo claro e escuro)
 
 ## 🏗️ Arquitetura e Abordagem
@@ -54,7 +54,7 @@ cd dummyjson-challenge
 
 2. Sincronize o projeto com o Gradle (Android Studio fará automaticamente)
 
-3. Escolha um dos sabores (flavors) e execute:
+3. Escolha um dos flavors e execute:
 
 #### Flavors disponíveis:
 
